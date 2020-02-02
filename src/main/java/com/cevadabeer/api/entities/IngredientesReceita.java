@@ -15,6 +15,7 @@ public class IngredientesReceita implements Serializable {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	
+	private Cerveja cerveja;
 	private Ingrediente ingrediente;
 	private Float quantidadePorLitro;
 	

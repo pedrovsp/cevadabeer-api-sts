@@ -1,12 +1,16 @@
 package com.cevadabeer.api.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cervejaria implements Serializable {
@@ -22,15 +26,19 @@ public class Cervejaria implements Serializable {
 	private String numero;
 	private String cidade;
 	private String estado;
-	private List<Produto> Produto;
-	private List<Cerveja> Cerveja;
+	
+	@OneToMany(mappedBy="cervejaria")
+	private Set<Produto> produto = new HashSet<>();
+	
+	@OneToMany(mappedBy="cervejaria")
+	private Set<Cerveja> cerveja = new HashSet<>();
 	
 	public Cervejaria() {
 	}
 
 	public Cervejaria(Long id, String nome, String tipoLogradouro, String nomeRua, String numero, String cidade,
-			String estado, List<com.cevadabeer.api.entities.Produto> produto,
-			List<com.cevadabeer.api.entities.Cerveja> cerveja) {
+			String estado, Set<com.cevadabeer.api.entities.Produto> produto,
+			Set<com.cevadabeer.api.entities.Cerveja> cerveja) {
 		this.id = id;
 		this.nome = nome;
 		this.tipoLogradouro = tipoLogradouro;
@@ -38,8 +46,8 @@ public class Cervejaria implements Serializable {
 		this.numero = numero;
 		this.cidade = cidade;
 		this.estado = estado;
-		Produto = produto;
-		Cerveja = cerveja;
+		this.produto = produto;
+		this.cerveja = cerveja;
 	}
 
 	public Long getId() {
@@ -98,20 +106,20 @@ public class Cervejaria implements Serializable {
 		this.estado = estado;
 	}
 
-	public List<Produto> getProduto() {
-		return Produto;
+	public Set<Produto> getProduto() {
+		return this.produto;
 	}
 
-	public void setProduto(List<Produto> produto) {
-		Produto = produto;
+	public void setProduto(Set<Produto> produto) {
+		this.produto = produto;
 	}
 
-	public List<Cerveja> getCerveja() {
-		return Cerveja;
+	public Set<Cerveja> getCerveja() {
+		return this.cerveja;
 	}
 
-	public void setCerveja(List<Cerveja> cervejas) {
-		Cerveja = cervejas;
+	public void setCerveja(Set<Cerveja> cervejas) {
+		this.cerveja = cervejas;
 	}
 
 	@Override

@@ -19,7 +19,8 @@ public class Produto implements Serializable {
 	private Float valor;
 	private Integer quantidade;
 	private Cerveja cerveja;
-	
+	private Cervejaria cervejaria;
+
 	public Produto() {
 	}
 

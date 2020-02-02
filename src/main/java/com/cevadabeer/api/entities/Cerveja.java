@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cerveja implements Serializable {
@@ -23,7 +25,9 @@ public class Cerveja implements Serializable {
 	private Float IBU;
 	private Integer diasMaturacao;
 	private String rotulo;
+	@OneToMany(targetEntity=IngredientesReceita.class, mappedBy="cerveja", fetch=FetchType.EAGER)
 	private List<IngredientesReceita> IngredientesReceita;
+	private Cervejaria cervejaria;
 	
 	public Cerveja() {
 	}
@@ -137,6 +141,14 @@ public class Cerveja implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Cervejaria getCervejaria() {
+		return cervejaria;
+	}
+
+	public void setCervejaria(Cervejaria cervejaria) {
+		this.cervejaria = cervejaria;
 	}
 
 	
