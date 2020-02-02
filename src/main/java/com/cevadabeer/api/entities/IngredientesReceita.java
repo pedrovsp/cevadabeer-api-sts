@@ -57,8 +57,6 @@ public class IngredientesReceita implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((ingrediente == null) ? 0 : ingrediente.hashCode());
-		result = prime * result + ((quantidadePorLitro == null) ? 0 : quantidadePorLitro.hashCode());
 		return result;
 	}
 
@@ -76,18 +74,10 @@ public class IngredientesReceita implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (ingrediente == null) {
-			if (other.ingrediente != null)
-				return false;
-		} else if (!ingrediente.equals(other.ingrediente))
-			return false;
-		if (quantidadePorLitro == null) {
-			if (other.quantidadePorLitro != null)
-				return false;
-		} else if (!quantidadePorLitro.equals(other.quantidadePorLitro))
-			return false;
 		return true;
 	}
+
+	
 	
 	
 }

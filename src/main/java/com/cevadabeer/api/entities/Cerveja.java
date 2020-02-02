@@ -118,15 +118,7 @@ public class Cerveja implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((IBU == null) ? 0 : IBU.hashCode());
-		result = prime * result + ((IngredientesReceita == null) ? 0 : IngredientesReceita.hashCode());
-		result = prime * result + ((cor == null) ? 0 : cor.hashCode());
-		result = prime * result + ((diasMaturacao == null) ? 0 : diasMaturacao.hashCode());
-		result = prime * result + ((estilo == null) ? 0 : estilo.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((rotulo == null) ? 0 : rotulo.hashCode());
-		result = prime * result + ((teorAlcoolico == null) ? 0 : teorAlcoolico.hashCode());
 		return result;
 	}
 
@@ -139,53 +131,15 @@ public class Cerveja implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cerveja other = (Cerveja) obj;
-		if (IBU == null) {
-			if (other.IBU != null)
-				return false;
-		} else if (!IBU.equals(other.IBU))
-			return false;
-		if (IngredientesReceita == null) {
-			if (other.IngredientesReceita != null)
-				return false;
-		} else if (!IngredientesReceita.equals(other.IngredientesReceita))
-			return false;
-		if (cor == null) {
-			if (other.cor != null)
-				return false;
-		} else if (!cor.equals(other.cor))
-			return false;
-		if (diasMaturacao == null) {
-			if (other.diasMaturacao != null)
-				return false;
-		} else if (!diasMaturacao.equals(other.diasMaturacao))
-			return false;
-		if (estilo == null) {
-			if (other.estilo != null)
-				return false;
-		} else if (!estilo.equals(other.estilo))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (rotulo == null) {
-			if (other.rotulo != null)
-				return false;
-		} else if (!rotulo.equals(other.rotulo))
-			return false;
-		if (teorAlcoolico == null) {
-			if (other.teorAlcoolico != null)
-				return false;
-		} else if (!teorAlcoolico.equals(other.teorAlcoolico))
-			return false;
 		return true;
 	}
+
+	
 	
 	
 }
