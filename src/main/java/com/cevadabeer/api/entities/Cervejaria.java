@@ -1,23 +1,20 @@
 package com.cevadabeer.api.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cervejaria implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
 	private String nome;
@@ -27,18 +24,16 @@ public class Cervejaria implements Serializable {
 	private String cidade;
 	private String estado;
 	
-	@OneToMany(mappedBy="cervejaria")
-	private Set<Produto> produto = new HashSet<>();
-	
-	@OneToMany(mappedBy="cervejaria")
-	private Set<Cerveja> cerveja = new HashSet<>();
+	@OneToOne
+	@JoinColumn(name = "User_id")
+	private User user;
 	
 	public Cervejaria() {
 	}
 
 	public Cervejaria(Long id, String nome, String tipoLogradouro, String nomeRua, String numero, String cidade,
-			String estado, Set<com.cevadabeer.api.entities.Produto> produto,
-			Set<com.cevadabeer.api.entities.Cerveja> cerveja) {
+			String estado, User user) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.tipoLogradouro = tipoLogradouro;
@@ -46,8 +41,7 @@ public class Cervejaria implements Serializable {
 		this.numero = numero;
 		this.cidade = cidade;
 		this.estado = estado;
-		this.produto = produto;
-		this.cerveja = cerveja;
+		this.user = user;
 	}
 
 	public Long getId() {
@@ -106,20 +100,12 @@ public class Cervejaria implements Serializable {
 		this.estado = estado;
 	}
 
-	public Set<Produto> getProduto() {
-		return this.produto;
+	public User getUser() {
+		return user;
 	}
 
-	public void setProduto(Set<Produto> produto) {
-		this.produto = produto;
-	}
-
-	public Set<Cerveja> getCerveja() {
-		return this.cerveja;
-	}
-
-	public void setCerveja(Set<Cerveja> cervejas) {
-		this.cerveja = cervejas;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
@@ -146,9 +132,6 @@ public class Cervejaria implements Serializable {
 			return false;
 		return true;
 	}
-
-	
-	
 	
 	
 }

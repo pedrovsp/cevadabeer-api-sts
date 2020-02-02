@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cevadabeer.api.entities.User;
-import com.cevadabeer.api.services.UserService;
+import com.cevadabeer.api.entities.Cervejaria;
+import com.cevadabeer.api.services.CervejariaService;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResources {
+@RequestMapping(value = "/cervejaria")
+public class CervejariaResource {
 	
 	@Autowired
-	private UserService service;
+	private CervejariaService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>>	findAll(){
-		List<User> list = service.findAll();
+	public ResponseEntity<List<Cervejaria>>	findAll(){
+		List<Cervejaria> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id){
-		User obj = service.findById(id);
+	public ResponseEntity<Cervejaria> findById(@PathVariable Long id){
+		Cervejaria obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }
