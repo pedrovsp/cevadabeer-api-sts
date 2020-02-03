@@ -1,6 +1,5 @@
 package com.cevadabeer.api.config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +7,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.cevadabeer.api.entities.Cerveja;
 import com.cevadabeer.api.entities.Cervejaria;
 import com.cevadabeer.api.entities.User;
+import com.cevadabeer.api.entities.enums.Cor;
+import com.cevadabeer.api.repositories.CervejaRepository;
 import com.cevadabeer.api.repositories.CervejariaRepository;
 import com.cevadabeer.api.repositories.UserRepository;
 
@@ -23,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private CervejariaRepository cervejariaRepository;
 
+	@Autowired
+	private CervejaRepository cervejaRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -32,8 +37,12 @@ public class TestConfig implements CommandLineRunner {
 		Cervejaria c1 = new Cervejaria(null,"Alienada","avenida","Pinho","386","Uberlandia","MG",u1);
 		Cervejaria c2 = new Cervejaria(null,"Uberbrau","avenida","Rosa","555","Uberlandia","MG",u2);
 		
+		Cerveja cj1 = new Cerveja(null,Cor.AMARELA,5.0,"IPA","Rota",40,15,"Rota do Cerrado",c1);
+		Cerveja cj2 = new Cerveja(null,Cor.VERMELHA,6.0,"Saison","Filha da Fruta",40,15,"Cerrana",c1);
+		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		cervejariaRepository.saveAll(Arrays.asList(c1, c2));
+		cervejaRepository.saveAll(Arrays.asList(cj1, cj2));
 	}
 	
 	

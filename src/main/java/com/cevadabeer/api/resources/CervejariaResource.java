@@ -20,7 +20,7 @@ public class CervejariaResource {
 	private CervejariaService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Cervejaria>>	findAll(){
+	public ResponseEntity<List<Cervejaria>> findAll(){
 		List<Cervejaria> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}

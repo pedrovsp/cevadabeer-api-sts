@@ -1,12 +1,15 @@
 package com.cevadabeer.api.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -25,8 +28,11 @@ public class Cervejaria implements Serializable {
 	private String estado;
 	
 	@OneToOne
-	@JoinColumn(name = "User_id")
+	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@OneToMany(mappedBy = "cervejaria")
+	private List<Cerveja> cervejas = new ArrayList<>();
 	
 	public Cervejaria() {
 	}
@@ -132,6 +138,10 @@ public class Cervejaria implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+	public List<Cerveja> getCervejas() {
+		return cervejas;
+	}
+
+
 }
