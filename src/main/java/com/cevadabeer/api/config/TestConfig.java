@@ -1,6 +1,6 @@
 package com.cevadabeer.api.config;
 
-import java.time.Instant;
+//import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +10,15 @@ import org.springframework.context.annotation.Profile;
 
 import com.cevadabeer.api.entities.Cerveja;
 import com.cevadabeer.api.entities.Cervejaria;
-import com.cevadabeer.api.entities.Producao;
+import com.cevadabeer.api.entities.Ingrediente;
+//import com.cevadabeer.api.entities.Producao;
 import com.cevadabeer.api.entities.User;
 import com.cevadabeer.api.entities.enums.Conplexidade;
 import com.cevadabeer.api.entities.enums.Cor;
 import com.cevadabeer.api.repositories.CervejaRepository;
 import com.cevadabeer.api.repositories.CervejariaRepository;
-import com.cevadabeer.api.repositories.ProducaoRepository;
+import com.cevadabeer.api.repositories.IngredienteRepository;
+//import com.cevadabeer.api.repositories.ProducaoRepository;
 import com.cevadabeer.api.repositories.UserRepository;
 
 @Configuration
@@ -32,7 +34,10 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private CervejaRepository cervejaRepository;
 	
-	private ProducaoRepository producaoRepository;
+//	private ProducaoRepository producaoRepository;
+	
+	
+	private IngredienteRepository ingredienteRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -52,10 +57,15 @@ public class TestConfig implements CommandLineRunner {
 
 		cervejaRepository.saveAll(Arrays.asList(cj1, cj2));
 		
-		Producao p1 = new Producao(null,30,Instant.parse("2019-06-20T19:53:07Z"),Instant.parse("2019-06-20T19:53:07Z"),cj1);
-		Producao p2 = new Producao(null,40,Instant.parse("2019-06-20T19:53:07Z"),Instant.parse("2019-06-20T19:53:07Z"),cj2);
+//		Producao p1 = new Producao(null,30,Instant.parse("2019-06-20T19:53:07Z"),Instant.parse("2019-06-20T19:53:07Z"),cj1);
+//		Producao p2 = new Producao(null,40,Instant.parse("2019-06-20T19:53:07Z"),Instant.parse("2019-06-20T19:53:07Z"),cj2);
 		
 //		producaoRepository.saveAll(Arrays.asList(p1, p2));
+		
+		Ingrediente i1 = new Ingrediente(null,"Lupo",80.0);
+		Ingrediente i2 = new Ingrediente(null,"Cevada",50.0);
+		
+		ingredienteRepository.saveAll(Arrays.asList(i1, i2));
 	}
 	
 }
