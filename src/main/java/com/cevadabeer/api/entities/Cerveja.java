@@ -1,6 +1,8 @@
 package com.cevadabeer.api.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.cevadabeer.api.entities.enums.Conplexidade;
 import com.cevadabeer.api.entities.enums.Cor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cerveja implements Serializable {
@@ -25,17 +30,21 @@ public class Cerveja implements Serializable {
 	private String nome;
 	private double ibu;
 	private Integer diasMaturacao;
-	private String rotulo;
+	private Conplexidade conplexidade;
 	
 	@ManyToOne
 	@JoinColumn(name = "cervejaria_id")
 	private Cervejaria cervejaria;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cerveja")
+	private List<Producao> producoes = new ArrayList<>();
+	
 	public Cerveja() {
 	}
 
 	public Cerveja(Long id, Cor cor, double teorAlcoolico, String estilo, String nome, double ibu, Integer diasMaturacao,
-			String rotulo, Cervejaria cervejaria) {
+			Conplexidade conplexidade, Cervejaria cervejaria) {
 		this.id = id;
 		this.cor = cor;
 		this.teorAlcoolico = teorAlcoolico;
@@ -43,7 +52,7 @@ public class Cerveja implements Serializable {
 		this.nome = nome;
 		this.ibu = ibu;
 		this.diasMaturacao = diasMaturacao;
-		this.rotulo = rotulo;
+		this.conplexidade = conplexidade;
 		this.cervejaria = cervejaria;
 	}
 
@@ -103,20 +112,20 @@ public class Cerveja implements Serializable {
 		this.diasMaturacao = diasMaturacao;
 	}
 
-	public String getRotulo() {
-		return rotulo;
-	}
-
-	public void setRotulo(String rotulo) {
-		this.rotulo = rotulo;
-	}
-
 	public Cervejaria getCervejaria() {
 		return cervejaria;
 	}
 
 	public void setCervejaria(Cervejaria cervejaria) {
 		this.cervejaria = cervejaria;
+	}
+	
+	public Conplexidade getConplexidade() {
+		return conplexidade;
+	}
+
+	public void setConplexidade(Conplexidade conplexidade) {
+		this.conplexidade = conplexidade;
 	}
 
 	@Override
@@ -143,7 +152,9 @@ public class Cerveja implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+	public List<Producao> getProducao() {
+		return producoes;
+	}
 
 }

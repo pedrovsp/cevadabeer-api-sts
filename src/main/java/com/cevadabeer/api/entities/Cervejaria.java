@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cervejaria implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +33,7 @@ public class Cervejaria implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cervejaria")
 	private List<Cerveja> cervejas = new ArrayList<>();
 	
@@ -39,7 +42,6 @@ public class Cervejaria implements Serializable {
 
 	public Cervejaria(Long id, String nome, String tipoLogradouro, String nomeRua, String numero, String cidade,
 			String estado, User user) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.tipoLogradouro = tipoLogradouro;
