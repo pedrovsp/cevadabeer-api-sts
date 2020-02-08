@@ -42,7 +42,6 @@ public class Cervejaria implements Serializable {
 
 	public Cervejaria(Long id, String nome, String tipoLogradouro, String nomeRua, String numero, String cidade,
 			String estado, User user) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.tipoLogradouro = tipoLogradouro;
