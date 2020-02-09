@@ -2,7 +2,9 @@ package com.cevadabeer.api.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,6 +41,9 @@ public class Cerveja implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "cerveja")
 	private List<Producao> producoes = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "id.cerveja")
+	private Set<IngredienteReceita> receita = new HashSet<>();
 	
 	public Cerveja() {
 	}
@@ -157,4 +162,7 @@ public class Cerveja implements Serializable {
 		return producoes;
 	}
 
+	public Set<IngredienteReceita> getReceita(){
+		return receita;
+	}
 }
