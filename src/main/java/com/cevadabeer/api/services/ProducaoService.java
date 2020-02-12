@@ -23,4 +23,25 @@ public class ProducaoService {
 		Optional<Producao> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public Producao insert(Producao obj) {
+		return repository.save(obj);
+	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	
+	public Producao update(Long id, Producao obj) {
+		Producao entity = repository.getOne(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(Producao entity, Producao obj) {
+		entity.setCerveja(obj.getCerveja());
+		entity.setDtInicio(obj.getDtInicio());
+		entity.setDtFim(obj.getDtFim());
+		entity.setQuantidadeEmLitros(obj.getQuantidadeEmLitros());
+	}
 }

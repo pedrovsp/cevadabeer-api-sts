@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Producao implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -24,7 +22,6 @@ public class Producao implements Serializable {
 	private Instant dtInicio;
 	private Instant dtFim;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cerveja_id")
 	private Cerveja cerveja;

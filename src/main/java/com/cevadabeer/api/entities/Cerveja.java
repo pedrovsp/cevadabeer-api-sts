@@ -158,6 +158,7 @@ public class Cerveja implements Serializable {
 		return true;
 	}
 
+	@JsonIgnore
 	public List<Producao> getProducao() {
 		return producoes;
 	}
